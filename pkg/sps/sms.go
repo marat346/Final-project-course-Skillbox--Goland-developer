@@ -14,7 +14,7 @@ type SMSData struct {
 	Provider     string `json:"provider"`
 }
 
-// Indexes of sms data
+// Индексы данных sms
 const (
 	COUNTRY_SMS = iota
 	BANDWIDTH_SMS
@@ -22,7 +22,7 @@ const (
 	PROVIDER_SMS
 )
 
-// GetStatusSMS - gets a list of SMS data from a csv file
+// GetStatusSMS - получает список данных SMS из csv-файла
 func GetStatusSMS(csvPath string) ([]SMSData, error) {
 	file, err := os.Open(csvPath)
 	if err != nil {
@@ -54,7 +54,7 @@ func GetStatusSMS(csvPath string) ([]SMSData, error) {
 	return SMSList, nil
 }
 
-// parseSMS - parses a string from a csv file. Checks if the data is correct
+// parseSMS - проверяет строку из csv-файла. Проверяет правильность данных
 func parseSMS(line string) (SMSData, bool) {
 	sms := strings.Split(line, ";")
 

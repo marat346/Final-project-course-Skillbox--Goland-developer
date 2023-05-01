@@ -11,9 +11,9 @@ type SupportData struct {
 	ActiveTickets int    `json:"active_tickets"`
 }
 
-// SupportRequest - sends the request to the specified address.
-// Gets data and makes a list.
-// Checks if the data is correct.
+// SupportRequest - отправляет запрос по указанному адресу.
+// Получает данные и составляет список.
+// Проверяет правильность данных.
 func SupportRequest(addr string) ([]SupportData, error) {
 	resp, err := http.Get(addr)
 	if err != nil {

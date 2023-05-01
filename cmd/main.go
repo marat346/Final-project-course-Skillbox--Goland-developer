@@ -4,8 +4,8 @@ import (
 	"flag"
 	"log"
 
-	"github.com/kuzminprog/service-provider-system/include/server"
-	"github.com/kuzminprog/service-provider-system/pkg/simulator"
+	"github.com/marat346/Final-project-course-Skillbox-Goland-developer/tree/master/include/server"
+	"github.com/marat346/Final-project-course-Skillbox-Goland-developer/tree/master/pkg/simulator"
 	"github.com/spf13/viper"
 )
 

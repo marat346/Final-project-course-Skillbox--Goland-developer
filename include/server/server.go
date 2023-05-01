@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/kuzminprog/service-provider-system/include/handler"
+	"github.com/marat346/Final-project-course-Skillbox-Goland-developer/tree/master/include/handler"
 )
 
 // StartServer() - запускает сервер с указанным адресом и портом

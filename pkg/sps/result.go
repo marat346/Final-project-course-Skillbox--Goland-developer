@@ -20,7 +20,7 @@ type ResultSetT struct {
 	Incidents []IncidentData           `json:"incident"`
 }
 
-// Part of the file path
+// Путь к файлу
 var (
 	smsFilename     = "/sms.data"
 	emailFilename   = "/email.data"
@@ -28,21 +28,21 @@ var (
 	voiceFilename   = "/voice.data"
 )
 
-// Part of the service address
+// Путь к серверной службе
 var (
 	mmsUrl       = "/mms"
 	supportUrl   = "/support"
 	accendentUrl = "/accendent"
 )
 
-// Support workload
+// Поддержка нагруженности
 const (
 	LOW_LOAD  = 1
 	AVG_LOAD  = 2
 	HIGH_LOAD = 3
 )
 
-// GetResultData - performs all the data collection steps and returns a set ready to be returned.
+// GetResultData - выполняет все этапы сбора данных и возвращает набор, готовый к возврату.
 func GetResultData(apiAddr, dataPath string) (ResultSetT, error) {
 	var result ResultSetT
 
@@ -85,7 +85,7 @@ func GetResultData(apiAddr, dataPath string) (ResultSetT, error) {
 	return result, nil
 }
 
-// getResultSMS - receives data by SMS and prepare two sorted lists
+// getResultSMS - получает данные по SMS и подготавливает два отсортированных списка
 func getResultSMS(smsPath string) ([][]SMSData, error) {
 	data, err := GetStatusSMS(smsPath)
 	if err != nil {
@@ -110,7 +110,7 @@ func getResultSMS(smsPath string) ([][]SMSData, error) {
 	return [][]SMSData{smsProviderSort, smsCountrySort}, nil
 }
 
-// getResultMMS - receives data by MMS and prepare two sorted lists
+// getResultMMS - получает данные по MMS и подготавливает два отсортированных списка
 func getResultMMS(addr string) ([][]MMSData, error) {
 	data, err := MMSRequest(addr)
 	if err != nil {
@@ -135,7 +135,7 @@ func getResultMMS(addr string) ([][]MMSData, error) {
 	return [][]MMSData{mmsProviderSort, mmsCountrySort}, nil
 }
 
-// getResultVoice - prepares the VoiceCall list
+// getResultVoice - подготавливает список голосовых вызовов
 func getResultVoice(voicePath string) ([]VoiceCallData, error) {
 	voice, err := GetStatusVoice(voicePath)
 	if err != nil {
@@ -144,9 +144,9 @@ func getResultVoice(voicePath string) ([]VoiceCallData, error) {
 	return voice, nil
 }
 
-// getResultEmail - sorts all providers in each country according to their average email delivery time and
-// makes a map with a country code key (map[string][]EmailData) and two slices inside.
-// The first contains the three fastest providers, the second the three slowest.
+// getResultEmail - сортирует всех поставщиков в каждой стране в соответствии с их средним временем доставки электронной почты и
+// создает карты(мапы) с ключом кода страны(map[string][]EmailData) и два слайса внутри.
+// Первый содержит трех самых быстрых провайдеров, второй - трех самых медленных.
 func getResultEmail(emailPath string) (map[string][][]EmailData, error) {
 	data, err := GetStatusEmail(emailPath)
 	if err != nil {
@@ -164,7 +164,7 @@ func getResultEmail(emailPath string) (map[string][][]EmailData, error) {
 	return resultEmail, nil
 }
 
-// getResultBilling - prepares the Billing list
+// getResultBilling - подготавливает список выставления счетов
 func getResultBilling(billingPath string) (BillingData, error) {
 	billing, err := GetStatusBilling(billingPath)
 	if err != nil {
@@ -174,9 +174,9 @@ func getResultBilling(billingPath string) (BillingData, error) {
 	return billing, nil
 }
 
-// getResultSupport - prepares a slice of two int,
-// the first of which will show the workload of the support service (1-3) and
-// the second - the average waiting time for a response.
+// getResultSupport - подготавливает два слайса с int(знач),
+// первый из которых покажет загруженность сервиса (1-3) и
+// второй - среднее время ожидания ответа.
 func getResultSupport(addr string) ([]int, error) {
 	data, err := SupportRequest(addr)
 	if err != nil {
@@ -204,8 +204,8 @@ func getResultSupport(addr string) ([]int, error) {
 	return []int{load, avgTime}, nil
 }
 
-// getResultIncidents - prepares data about the history of incidents.
-// Incidents with active status are at the top of the list
+// getResultIncidents - подготавливает данные об истории ошибок.
+// Ошибки с активным статусом находятся в верхней части списка
 func getResultIncidents(addr string) ([]IncidentData, error) {
 	data, err := IncidentRequest(addr)
 	if err != nil {

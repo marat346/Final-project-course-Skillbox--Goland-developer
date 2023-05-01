@@ -11,9 +11,9 @@ type IncidentData struct {
 	Status string `json:"status"` // возможные статусы active и closed
 }
 
-// IncidentRequest - sends the request to the specified address.
-// Gets data and makes a list.
-// Checks if the data is correct.
+// IncidentRequest - отправляет запрос по указанному адресу.
+// Получает данные и составляет список.
+// Проверяет правильность данных.
 func IncidentRequest(addr string) ([]IncidentData, error) {
 	resp, err := http.Get(addr)
 	if err != nil {

@@ -1,25 +1,22 @@
 // sps - Service provider system
 //
-// The package is able to perform:
-// Data collection by SMS system.
-// Data collection on the MMS system.
-// Data collection on the VoiceCall system.
-// Data collection on the email system.
-// System data collection on the Billing system.
-// Collection of Support system data.
-// Collection of incident history system data.
-//
-// The package was created as part of the final work on the course from skillbox
-// By Vyacheslav Kuzmin
+// Пакет способен выполнять:
+// Сбор данных с помощью системы SMS.
+// Сбор данных в системе MMS.
+// Сбор данных в системе голосовых вызовов.
+// Сбор данных в системе электронной почты.
+// Системный сбор данных в биллинговой системе.
+// Сбор данных системы поддержки.
+// Сбор системных данных истории инцидентов.
 
 package sps
 
 import "strconv"
 
 var (
-	// countryCode - list of countries.
-	// Key - country code (ISO 3166-1 alpha-2).
-	// Value - country name.
+	// countryCode - список стран.
+	// Key - код страны (ISO 3166-1 alpha-2).
+	// Value - название страны.
 	countryCode = map[string]string{
 		"AD": "Andorra",
 		"AE": "United Arab Emirates",
@@ -274,27 +271,27 @@ var (
 )
 
 var (
-	// providerSMSList - list of providers.
-	// Key - provider name.
-	// Value - boolean value.
+	// providerSMSList - список провайдеров.
+	// Key - название провайдеов.
+	// Value - булевое значение.
 	providerSMSList = map[string]bool{
 		"Topolo": true,
 		"Rond":   true,
 		"Kildy":  true,
 	}
 
-	// providerVoiceList - list of providers.
-	// Key - provider name.
-	// Value - boolean value.
+	// providerSMSList - список провайдеров.
+	// Key - название провайдеов.
+	// Value - булевое значение.
 	providerVoiceList = map[string]bool{
 		"TransparentCalls": true,
 		"E-Voice":          true,
 		"JustPhone":        true,
 	}
 
-	// providerEmailList - list of providers.
-	// Key - provider name.
-	// Value - boolean value.
+	// providerSMSList - список провайдеров.
+	// Key - название провайдеов.
+	// Value - булевое значение.
 	providerEmailList = map[string]bool{
 		"Gmail":       true,
 		"Yahoo":       true,
@@ -313,16 +310,16 @@ var (
 )
 
 var (
-	// statusCode - status list.
-	// Key - status name.
-	// Value - boolean value.
+	// statusCode - список статусов.
+	// Key - название статусов.
+	// Value - булевое значение.
 	statusCode = map[string]bool{
 		"active": true,
 		"closed": true,
 	}
 )
 
-// codeToCountry - translates the string from the country code in alpha 2 into the full name
+// codeToCountry - преобразует строку из кода страны в алфавитном порядке 2 в полное название
 func codeToCountry(code string) string {
 	country, ok := countryCode[code]
 	if !ok {
@@ -331,13 +328,13 @@ func codeToCountry(code string) string {
 	return country
 }
 
-// isValidCountry - checks the existence of the country in the countryCode
+// isValidCountry - проверяет наличие страны в коде страны
 func isValidCountry(country string) bool {
 	_, ok := countryCode[country]
 	return ok
 }
 
-// isValidBandwidth - verifies that the bandwidth values are correct
+// isValidBandwidth - проверяет правильность диапозона канала
 func isValidBandwidth(bandwidth string) bool {
 	width, err := strconv.Atoi(bandwidth)
 	if err != nil {
@@ -346,7 +343,7 @@ func isValidBandwidth(bandwidth string) bool {
 	return width >= 0 && width <= 100
 }
 
-// isValidResponseTime - verifies that the responseTime values are correct
+// isValidResponseTime - проверяет правильность значения ResponseTime
 func isValidResponseTime(responseTime string) bool {
 	time, err := strconv.Atoi(responseTime)
 	if err != nil {
@@ -355,25 +352,25 @@ func isValidResponseTime(responseTime string) bool {
 	return time >= 0
 }
 
-// isValidSMSProvider - checks the existence of the provider in the providerSMSList
+// isValidSMSProvider - проверяет наличие провайдера в списке providerSMSList
 func isValidSMSProvider(provider string) bool {
 	_, ok := providerSMSList[provider]
 	return ok
 }
 
-// isValidVoiceProvider - checks the existence of the provider in the providerVoiceList
+// isValidVoiceProvider - проверяет наличие провайдера в списке providerVoiceList
 func isValidVoiceProvider(provider string) bool {
 	_, ok := providerVoiceList[provider]
 	return ok
 }
 
-// isValidEmailProvider - checks the existence of the provider in the providerEmailList
+// isValidEmailProvider - проверяет наличие провайдера в списке providerEmailList
 func isValidEmailProvider(provider string) bool {
 	_, ok := providerEmailList[provider]
 	return ok
 }
 
-// isValidLoad - verifies that the load values are correct
+// isValidLoad - проверяет правильность значений загрузки
 func isValidLoad(load string) bool {
 	currentLoad, err := strconv.Atoi(load)
 	if err != nil {
@@ -388,25 +385,25 @@ func isValidStability(stability string) bool {
 	return err == nil
 }
 
-// isValidPurity - verifies that the stability values are correct
+// isValidPurity - проверяет правильность значений стабильности
 func isValidPurity(purity string) bool {
 	_, err := strconv.Atoi(purity)
 	return err == nil
 }
 
-// isValidTTFB - verifies that the TTFB values are correct
+// isValidTTFB - проверяет правильность значений TTFB
 func isValidTTFB(ttfb string) bool {
 	_, err := strconv.Atoi(ttfb)
 	return err == nil
 }
 
-// isMedianDuration - verifies that the median values are correct
+// isMedianDuration - проверяет правильность значений median
 func isMedianDuration(median string) bool {
 	_, err := strconv.Atoi(median)
 	return err == nil
 }
 
-// isValidDeliveryTime - verifies that the deliveryTime values are correct
+// isValidDeliveryTime - проверяет правильность значений deliveryTime
 func isValidDeliveryTime(deliveryTime string) bool {
 	time, err := strconv.Atoi(deliveryTime)
 	if err != nil {
@@ -415,7 +412,7 @@ func isValidDeliveryTime(deliveryTime string) bool {
 	return time > 0
 }
 
-// isValidStatus - checks the existence of the status in the statusCode
+// isValidStatus - проверяет наличие статуса в StatusCode
 func isValidStatus(status string) bool {
 	_, ok := statusCode[status]
 	return ok

@@ -106,7 +106,7 @@ func init() {
 	fmt.Printf("Second Email row for currupt %d\n", secondEmailRowForCorrupt+1)
 }
 
-// Start() - starts the server simulator with the specified address and port
+// Start() - запускает симулятор сервера с указанным адресом и портом
 func Start(url string) {
 	log.Println("Start simulator")
 
@@ -247,12 +247,12 @@ func shuffleBillingData() {
 		}
 
 		data = data + fmt.Sprintf("%d", value)
-		// create customer
-		// purchase
-		// payout
-		// recurring
-		// fraud control
-		// checkout page
+		// создать клиента
+		// покупка
+		// выплата
+		// повторяющийся
+		// борьба с мошенничеством
+		// страница оформления заказа
 	}
 
 	err := ioutil.WriteFile(getFilapathByFilename(viper.GetString("data.path")+billingFilename), []byte(data), 0644)

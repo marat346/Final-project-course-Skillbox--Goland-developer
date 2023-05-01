@@ -15,14 +15,14 @@ type EmailData struct {
 	DeliveryTime int    `json:"delivery_time"`
 }
 
-// Indexes of email data
+// Индексы данных электронной почты
 const (
 	COUNTRY_EMAIL = iota
 	PROVIDER_EMAIL
 	DELIVERY_TIME_EMAIL
 )
 
-// GetStatusEmail - gets a list of email data from a csv file
+// GetStatusEmail - получает список данных электронной почты из csv-файла
 func GetStatusEmail(csvPath string) ([]EmailData, error) {
 	file, err := os.Open(csvPath)
 	if err != nil {
@@ -55,7 +55,7 @@ func GetStatusEmail(csvPath string) ([]EmailData, error) {
 	return EmailList, nil
 }
 
-// parseEmail - parses a string from a csv file. Checks if the data is correct
+// parseEmail - анализирует строку из csv-файла. Проверяет правильность данных
 func parseEmail(line string) (EmailData, bool) {
 	email := strings.Split(line, ";")
 
@@ -79,9 +79,9 @@ func parseEmail(line string) (EmailData, bool) {
 	}, true
 }
 
-// GetSlowFastEmailProvider - sorts all providers in the country according to the average letter delivery time.
-// It returns two slices.
-// The first contains the three fastest providers, the second contains the three slowest.
+// GetSlowFastEmailProvider - сортирует всех поставщиков услуг в стране в соответствии со средним временем доставки писем.
+// Он возвращает два слайса.
+// Первый содержит трех самых быстрых провайдеров, второй - трех самых медленных.
 func GetSlowFastEmailProvider(data []EmailData, code string) (slow []EmailData, fast []EmailData) {
 
 	emailsByCountry := make([]EmailData, 0)

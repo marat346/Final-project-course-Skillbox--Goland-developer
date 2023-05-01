@@ -8,7 +8,7 @@ import (
 	"github.com/kuzminprog/service-provider-system/include/handler"
 )
 
-// StartServer() - starts the server with the specified address and port
+// StartServer() - запускает сервер с указанным адресом и портом
 func StartServer(addr string) {
 	log.Println("Start server")
 	server := &http.Server{

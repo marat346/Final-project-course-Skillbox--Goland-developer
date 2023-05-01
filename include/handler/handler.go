@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"https://github.com/marat346/Final-project-course-Skillbox-Goland-developer/tree/master/pkg/sps"
+	"github.com/marat346/Final-project-course-Skillbox-Goland-developer/tree/master/pkg/sps"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/spf13/viper"
